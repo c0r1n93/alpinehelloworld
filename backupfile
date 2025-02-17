@@ -1,10 +1,11 @@
 pipeline {
-    agent any 
+    agent any
+
     parameters {
         string(name: 'CONTAINER_NAME',defaultValue: ' alpine_containe', description: 'Name of my container')
         string(name: 'IMAGE_NAME',defaultValue: 'alpine_image', description: 'Name of my container image')
         string(name: 'IMAGE_TAG',defaultValue: '1.1', description: 'version of my container image')
-    }
+}
 
     stages {
         stage('Build Docker Image') {
@@ -14,6 +15,7 @@ pipeline {
                 }
             }
         }
+
         stage('Run Docker Container') {
             steps {
                 script {
@@ -22,6 +24,7 @@ pipeline {
                 }
             }
         }
+
         stage('check Docker Container with return code') {
             steps {
                 httpRequest 'http://172.17.0.2:80'
@@ -29,7 +32,8 @@ pipeline {
                     responseCode '200'
             }
         }
-        stage('Stop Docker Container') {
+
+            stage('Stop Docker Container') {
                 steps {
                     script {
                         sh 'docker stop ${CONTAINER_NAME}'
@@ -37,5 +41,3 @@ pipeline {
                     }
                 }
             }
-    }
-}
