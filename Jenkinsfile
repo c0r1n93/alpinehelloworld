@@ -1,5 +1,5 @@
 pipeline {
-    agent any 
+    agent none
     parameters {
         string(name: 'CONTAINER_NAME',defaultValue: ' alpine_containe', description: 'Name of my container')
         string(name: 'IMAGE_NAME',defaultValue: 'alpine_image', description: 'Name of my container image')
@@ -11,6 +11,7 @@ pipeline {
             steps {
                 git 'https://github.com/c0r1n93/alpinehelloworld.git'
             }
+        }    
         stage('Build Docker Image') {
             steps {
                 script {
