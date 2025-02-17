@@ -23,12 +23,15 @@ pipeline {
             }
     }
     stage('check Docker Container with return code') {
-            steps {
-                httpRequest 'http://172.17.0.2:80'
-                    httpmethod 'GET'
-                    responseCode '200'
-            }
+        steps {
+            httpRequest(
+                url: 'http://172.17.0.2:80',
+                httpMode: 'GET',
+                validResponseCodes: '200'
+            )
+        }
     }
+
     stage('Stop Docker Container') {
                 steps {
                     
