@@ -7,6 +7,10 @@ pipeline {
     }
 
     stages {
+        stage ('Checkout') {
+            steps {
+                git 'https://github.com/c0r1n93/alpinehelloworld.git'
+            }
         stage('Build Docker Image') {
             steps {
                 script {
