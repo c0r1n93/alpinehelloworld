@@ -11,8 +11,10 @@ pipeline {
     stages {
         stage('Build docker image') {
             steps {
+                script {
                 buildDockerImage()
                 sh "docker rm -f ${CONTAINER_NAME}"
+                }    
             }
         }
         stage('Run Docker Container') {
