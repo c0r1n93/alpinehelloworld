@@ -1,3 +1,4 @@
+@Library('Jenkins-shared-library') _
 pipeline {
     agent any
 
@@ -10,7 +11,7 @@ pipeline {
     stages {
         stage('Build docker image') {
             steps {
-                sh "docker build -t ${IMAGE_NAME}:${IMAGE_TAG} ."
+                buildDockerImage()
                 sh "docker rm -f ${CONTAINER_NAME}"
             }
         }
