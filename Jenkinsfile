@@ -6,9 +6,9 @@ pipeline {
         string(name: 'containerName', defaultValue: 'alpine', description: 'the name of my container')
         string(name: 'imageName', defaultValue: 'alpine_image', description: 'the name of my container image')
         string(name: 'imageTag', defaultValue: '1.2', description: 'The version of my image')
-        String(name: 'port', defaultValue: '5000')
-        String(name:'hostPort', defaultValue:'80')
-        String(name:'containerPort', defaultValue:'5000')
+        string(name: 'port', defaultValue: '5000')
+        string(name:'hostPort', defaultValue:'80')
+        string(name:'containerPort', defaultValue:'5000')
     }
 
     stages {
