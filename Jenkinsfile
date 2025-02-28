@@ -3,9 +3,12 @@ pipeline {
     agent any
 
     parameters {
-        string(name: 'CONTAINER_NAME', defaultValue: 'alpine', description: 'the name of my container')
+        string(name: 'containerName', defaultValue: 'alpine', description: 'the name of my container')
         string(name: 'imageName', defaultValue: 'alpine_image', description: 'the name of my container image')
         string(name: 'imageTag', defaultValue: '1.2', description: 'The version of my image')
+        String(name: 'port', defaultValue: '5000')
+        String(name:'hostPort', defaultValue:'80')
+        String(name:'containerPort', defaultValue:'5000')
     }
 
     stages {
@@ -19,7 +22,7 @@ pipeline {
         }
         stage('Run Docker Container') {
             steps {
-                runDockerContainer()
+                runDockerContainer("${params.containerName}", "${params.port}", "${params.hostPort}", "${params.containerPort}", "${params.imageName}", "${params.imageTag}")
             }
         }
         stage('check Docker Container with return code') {
