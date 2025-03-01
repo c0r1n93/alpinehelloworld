@@ -33,7 +33,7 @@ pipeline {
 
         stage('Stop Docker Container') {
                 steps {
-                    stopDockerContainer()
+                    stopDockerContainer("${params.containerName}")
                 }
         }
     }
